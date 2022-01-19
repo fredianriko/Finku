@@ -7,6 +7,6 @@ export class AppService {
   }
 
   getTried(): string {
-    return 'Second Hello World!';
+    return 'Second World!';
   }
 }
