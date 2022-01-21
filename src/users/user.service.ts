@@ -10,22 +10,21 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
+  async create(data: any): Promise<User> {
+    return this.userRepository.save(data);
+  }
+
+  async findOne(condition: any): Promise<User> {
+    return this.userRepository.findOne(condition);
+  }
   findAll() {
     return this.userRepository.find();
   }
-  findOne(id: number) {
+  async userById(id: number) {
     return this.userRepository.findOneOrFail(id);
   }
 
-  create(data: CreateUserDto) {
-    const user = new User();
-    user.firstName = data.firstName;
-    user.lastName = data.lastName;
-    user.isActive = data.isActive;
-    return this.userRepository.save(user);
-  }
-
-  update(data: CreateUserDto, id: number) {
+  async update(data: CreateUserDto, id: number) {
     return this.userRepository.save({ ...data, id: Number(id) });
   }
 
