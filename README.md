@@ -48,7 +48,7 @@ $ npm run start:prod
 ## Test
 
 ```bash
-# unit tests
+# unit tests currently not finished because of a lack of knowledge on unit testing using jest
 $ npm run test
 
 # e2e tests
