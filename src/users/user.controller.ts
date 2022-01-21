@@ -48,19 +48,13 @@ export class UserController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    const saltRound = 12;
-    const hashPassword = await bcrypt.hash(password, saltRound, (err, hash) => {
-      if (!err) {
-        return hash;
-      } else {
-        throw err;
-      }
-    });
+    const saltRounds = 10;
+    const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
     return this.userService.create({
       username,
       email,
-      password: hashPassword,
+      password: hashedPassword,
     });
   }
 
